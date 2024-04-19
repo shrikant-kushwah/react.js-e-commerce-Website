@@ -23,7 +23,8 @@ const persistedReducer = persistReducer(persistConfig, orebiReducer);
 export const store = configureStore({
   reducer: { orebiReducer: persistedReducer },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+    getDefaultMiddleware(
+      {
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
