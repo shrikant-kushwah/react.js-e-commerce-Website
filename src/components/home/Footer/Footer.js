@@ -124,7 +124,7 @@ const Footer = () => {
           <FooterListTitle title="Subscribe to our newsletter." />
           <div className="w-full">
             <p className="text-center mb-4">
-              A at pellentesque et mattis porta enim elementum.
+              At the junction of flexibility and structured approaches, true progress emerges.
             </p>
             {subscription ? (
               <motion.p
