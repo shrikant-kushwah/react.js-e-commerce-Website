@@ -9,12 +9,7 @@ const FooterBottom = () => {
           <span className="text-md mr-[1px] mt-[2px] md:mt-0 text-center hidden md:inline-flex">
             <AiOutlineCopyright />
           </span>
-          Copyright 2023 | Orebi shopping | All Rights Reserved |
-          <a href="https://legacy.reactjs.org/" target="_blank" rel="noreferrer">
-            <span className="ml-1 font-medium group-hover:text-primeColor">
-              Powered by Shrikant Kushwah
-            </span>
-          </a>
+          Copyright 2025 | Orebi shopping | All Rights Reserved 
         </p>
       </div>
     </div>
