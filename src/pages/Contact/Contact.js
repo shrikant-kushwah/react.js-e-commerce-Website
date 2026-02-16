@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 
@@ -6,7 +7,7 @@ const Contact = () => {
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState("");
   useEffect(() => {
-    setPrevLocation(location.state.data);
+    setPrevLocation(location.state?.data || "");
   }, [location]);
 
   const [clientName, setclientName] = useState("");
@@ -65,15 +66,33 @@ const Contact = () => {
 
   return (
     <div className="max-w-container mx-auto px-4">
-      <Breadcrumbs title="Contact" prevLocation={prevLocation} />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Breadcrumbs title="Contact" prevLocation={prevLocation} />
+      </motion.div>
       {successMsg ? (
-        <p className="pb-20 w-96 font-medium text-green-500">{successMsg}</p>
+        <motion.p
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="pb-20 w-full sm:w-96 font-medium text-green-500 text-sm sm:text-base"
+        >
+          {successMsg}
+        </motion.p>
       ) : (
-        <form className="pb-20">
-          <h1 className="font-titleFont font-semibold text-3xl">
+        <motion.form
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="pb-20"
+        >
+          <h1 className="font-titleFont font-semibold text-2xl sm:text-3xl mb-4 sm:mb-6">
             Fill up a Form
           </h1>
-          <div className="w-[500px] h-auto py-6 flex flex-col gap-6">
+          <div className="w-full sm:w-[500px] h-auto py-4 sm:py-6 flex flex-col gap-4 sm:gap-6">
             <div>
               <p className="text-base font-titleFont font-semibold px-2">
                 Name
@@ -130,14 +149,16 @@ const Contact = () => {
                 </p>
               )}
             </div>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handlePost}
-              className="w-44 bg-primeColor text-gray-200 h-10 font-titleFont text-base tracking-wide font-semibold hover:bg-black hover:text-white duration-200"
+              className="w-full sm:w-44 bg-primeColor text-gray-200 h-10 sm:h-12 font-titleFont text-sm sm:text-base tracking-wide font-semibold hover:bg-black hover:text-white duration-200 rounded"
             >
               Post
-            </button>
+            </motion.button>
           </div>
-        </form>
+        </motion.form>
       )}
     </div>
   );

@@ -24,6 +24,7 @@ const Header = () => {
     };
     ResponsiveMenu();
     window.addEventListener("resize", ResponsiveMenu);
+    return () => window.removeEventListener("resize", ResponsiveMenu);
   }, []);
 
   return (
@@ -41,13 +42,13 @@ const Header = () => {
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="flex items-center w-auto z-50 p-0 gap-2"
+                className="flex items-center w-auto z-50 p-0 gap-2 flex-wrap justify-center"
               >
                 <>
                   {navBarList.map(({ _id, title, link }) => (
                     <NavLink
                       key={_id}
-                      className="flex font-normal hover:font-bold w-20 h-6 justify-center items-center px-12 text-base text-[#767676] hover:underline underline-offset-[4px] decoration-[1px] hover:text-[#262626] md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
+                      className="flex font-normal hover:font-bold w-auto min-w-[60px] h-6 justify-center items-center px-4 md:px-8 lg:px-12 text-sm md:text-base text-[#767676] hover:underline underline-offset-[4px] decoration-[1px] hover:text-[#262626] md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
                       to={link}
                       state={{ data: location.pathname.split("/")[1] }}
                     >
@@ -62,16 +63,24 @@ const Header = () => {
               className="inline-block md:hidden cursor-pointer w-8 h-6 absolute top-6 right-4"
             />
             {sidenav && (
-              <div className="fixed top-0 left-0 w-full h-screen bg-black text-gray-200 bg-opacity-80 z-50">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed top-0 left-0 w-full h-screen bg-black text-gray-200 bg-opacity-80 z-50"
+                onClick={() => setSidenav(false)}
+              >
                 <motion.div
                   initial={{ x: -300, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="w-[80%] h-full relative"
+                  exit={{ x: -300, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-[80%] sm:w-[70%] md:w-[60%] h-full relative bg-primeColor"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <div className="w-full h-full bg-primeColor p-6">
+                  <div className="w-full h-full bg-primeColor p-4 sm:p-6 overflow-y-auto">
                     <img
-                      className="w-28 mb-6"
+                      className="w-24 sm:w-28 mb-4 sm:mb-6"
                       src={logoLight}
                       alt="logoLight"
                     />
@@ -140,12 +149,12 @@ const Header = () => {
                   </div>
                   <span
                     onClick={() => setSidenav(false)}
-                    className="w-8 h-8 border-[1px] border-gray-300 absolute top-2 -right-10 text-gray-300 text-2xl flex justify-center items-center cursor-pointer hover:border-red-500 hover:text-red-500 duration-300"
+                    className="w-8 h-8 border-[1px] border-gray-300 absolute top-2 -right-10 sm:-right-12 text-gray-300 text-xl sm:text-2xl flex justify-center items-center cursor-pointer hover:border-red-500 hover:text-red-500 duration-300 bg-primeColor rounded-full"
                   >
                     <MdClose />
                   </span>
                 </motion.div>
-              </div>
+              </motion.div>
             )}
           </div>
         </Flex>

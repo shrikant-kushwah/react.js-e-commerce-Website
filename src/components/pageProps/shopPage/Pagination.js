@@ -51,24 +51,26 @@ const Pagination = ({ itemsPerPage }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mdl:gap-4 lg:gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 mdl:gap-4 lg:gap-6 xl:gap-10">
         <Items currentItems={currentItems} />
       </div>
-      <div className="flex flex-col mdl:flex-row justify-center mdl:justify-between items-center">
+      <div className="flex flex-col mdl:flex-row justify-center mdl:justify-between items-center gap-4 py-6 sm:py-10">
         <ReactPaginate
           nextLabel=""
           onPageChange={handlePageClick}
-          pageRangeDisplayed={3}
-          marginPagesDisplayed={2}
+          pageRangeDisplayed={2}
+          marginPagesDisplayed={1}
           pageCount={pageCount}
           previousLabel=""
-          pageLinkClassName="w-9 h-9 border-[1px] border-lightColor hover:border-gray-500 duration-300 flex justify-center items-center"
-          pageClassName="mr-6"
-          containerClassName="flex text-base font-semibold font-titleFont py-10"
+          pageLinkClassName="w-8 h-8 sm:w-9 sm:h-9 border-[1px] border-lightColor hover:border-gray-500 duration-300 flex justify-center items-center text-sm sm:text-base rounded"
+          pageClassName="mr-2 sm:mr-4 md:mr-6"
+          containerClassName="flex text-sm sm:text-base font-semibold font-titleFont flex-wrap justify-center"
           activeClassName="bg-black text-white"
+          breakLabel="..."
+          breakClassName="mr-2 sm:mr-4 md:mr-6"
         />
 
-        <p className="text-base font-normal text-lightText">
+        <p className="text-sm sm:text-base font-normal text-lightText text-center">
           Products from {itemStart === 0 ? 1 : itemStart} to {endOffset} of{" "}
           {items.length}
         </p>

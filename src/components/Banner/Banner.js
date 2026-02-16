@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import Slider from "react-slick";
 import {
   bannerImgOne,
@@ -100,25 +101,48 @@ const Banner = () => {
     ],
   };
   return (
-    <div className="w-full bg-white">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="w-full bg-white"
+    >
       <Slider {...settings}>
         <Link to="/offer">
-          <div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.01 }}
+            className="overflow-hidden"
+          >
             <Image imgSrc={bannerImgOne} />
-          </div>
+          </motion.div>
         </Link>
         <Link to="/offer">
-          <div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.01 }}
+            className="overflow-hidden"
+          >
             <Image imgSrc={bannerImgTwo} />
-          </div>
+          </motion.div>
         </Link>
         <Link to="/offer">
-          <div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.01 }}
+            className="overflow-hidden"
+          >
             <Image imgSrc={bannerImgThree} />
-          </div>
+          </motion.div>
         </Link>
       </Slider>
-    </div>
+    </motion.div>
   );
 };
 

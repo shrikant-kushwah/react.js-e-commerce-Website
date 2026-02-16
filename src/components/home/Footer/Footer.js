@@ -28,15 +28,21 @@ const Footer = () => {
     }
   };
   return (
-    <div className="w-full bg-[#F5F5F3] py-20">
-      <div className="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2  xl:grid-cols-6 px-4 gap-10">
-        <div className="col-span-2">
+    <div className="w-full bg-[#F5F5F3] py-12 sm:py-16 lg:py-20">
+      <div className="max-w-container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 px-4 gap-8 sm:gap-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-2"
+        >
           <FooterListTitle title=" More about Orebi Shop" />
-          <div className="flex flex-col gap-6">
-            <p className="text-base w-full xl:w-[80%]">
+          <div className="flex flex-col gap-4 sm:gap-6">
+            <p className="text-sm sm:text-base w-full xl:w-[80%]">
               Consider the item packaging traditionally seen in brick-and-mortar stores!
             </p>
-            <ul className="flex items-center gap-2">
+            <ul className="flex items-center gap-3 sm:gap-4">
               <a
                 href="https://www.linkedin.com/in/shrikant-kushwah-5bb1911b2/"
                 target="_blank"
@@ -79,8 +85,13 @@ const Footer = () => {
 
             </ul>
           </div>
-        </div>
-        <div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           <FooterListTitle title="Shop" />
           <ul className="flex flex-col gap-2">
             <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
@@ -99,8 +110,13 @@ const Footer = () => {
               New Arrivals
             </li>
           </ul>
-        </div>
-        <div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <FooterListTitle title="Your account" />
           <ul className="flex flex-col gap-2">
             <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
@@ -119,11 +135,17 @@ const Footer = () => {
               Payment Options
             </li>
           </ul>
-        </div>
-        <div className="col-span-2 flex flex-col items-center w-full px-4">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="col-span-1 sm:col-span-2 lg:col-span-3 xl:col-span-2 flex flex-col items-center w-full px-2 sm:px-4"
+        >
           <FooterListTitle title="Subscribe to our newsletter." />
           <div className="w-full">
-            <p className="text-center mb-4">
+            <p className="text-center mb-4 text-sm sm:text-base">
               At the junction of flexibility and structured approaches, true progress emerges.
             </p>
             {subscription ? (
@@ -131,42 +153,48 @@ const Footer = () => {
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="w-full text-center text-base font-titleFont font-semibold text-green-600"
+                className="w-full text-center text-sm sm:text-base font-titleFont font-semibold text-green-600"
               >
                 Subscribed Successfully !
               </motion.p>
             ) : (
-              <div className="w-full flex-col xl:flex-row flex justify-between items-center gap-4">
+              <div className="w-full flex-col xl:flex-row flex justify-between items-stretch xl:items-center gap-4">
                 <div className="flex flex-col w-full">
                   <input
                     onChange={(e) => setEmailInfo(e.target.value)}
                     value={emailInfo}
-                    className="w-full h-12 border-b border-gray-400 bg-transparent px-4 text-primeColor text-lg placeholder:text-base outline-none"
+                    className="w-full h-10 sm:h-12 border-b border-gray-400 bg-transparent px-3 sm:px-4 text-primeColor text-sm sm:text-lg placeholder:text-xs sm:placeholder:text-base outline-none"
                     type="text"
                     placeholder="Insert your email ...*"
                   />
                   {errMsg && (
-                    <p className="text-red-600 text-sm font-semibold font-titleFont text-center animate-bounce mt-2">
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      className="text-red-600 text-xs sm:text-sm font-semibold font-titleFont text-center mt-2"
+                    >
                       {errMsg}
-                    </p>
+                    </motion.p>
                   )}
                 </div>
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={handleSubscription}
-                  className="bg-white text-lightText w-[30%] h-10 hover:bg-black hover:text-white duration-300 text-base tracking-wide"
+                  className="bg-white text-lightText w-full xl:w-[30%] h-10 hover:bg-black hover:text-white duration-300 text-sm sm:text-base tracking-wide rounded"
                 >
                   Subscribe
-                </button>
+                </motion.button>
               </div>
             )}
 
             <Image
-              className={`w-[80%] lg:w-[60%] mx-auto ${subscription ? "mt-2" : "mt-6"
+              className={`w-[80%] sm:w-[70%] lg:w-[60%] mx-auto ${subscription ? "mt-2" : "mt-4 sm:mt-6"
                 }`}
               imgSrc={paymentCard}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
